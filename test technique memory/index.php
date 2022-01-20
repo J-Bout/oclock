@@ -15,16 +15,16 @@
         </head>
         <section id="container">
             <div id="btn-go">
-                <div id="resultats"></div>
-                <div id="best-scores">
+                <div id="resultats"></div> <!-- On ffiche ic le message de victoire ou de défaite -->
+                <div id="best-scores"> 
                     <h2>Top 5 joueurs</h2>
-                    <div id="best-scores-list">
+                    <div id="best-scores-list"> <!-- C'est ici que seront affichés les 5 derniers meilleurs scores -->
                     </div>
                 </div>
-                <div id="start">Commencer</div>
-                <div id="restart">Recommencer</div>
+                <div id="start">Commencer</div> <!-- Bouton pour lancer le jeu -->
+                <div id="restart">Recommencer</div> <!-- Bouton pour relancer le jeu -->
             </div>
-            <div id="game">
+            <div id="game"> <!-- La grille qui va permettre d'afficher les cartes -->
                     <div class="card item-0"></div>
                     <div class="card item-1"></div>
                     <div class="card item-2"></div>
@@ -56,14 +56,13 @@
             </div>
         </section>
         <footer>
-            <div id="saveWarningText"></div>
             <div id="timer">
-                <div id="countdown"></div>
-                <div id="progress-bar"><div class="bar"></div></div>
+                <div id="countdown"></div> <!-- On gère ici l'affichage du timer -->
+                <div id="progress-bar"><div class="bar"></div></div> <!-- Et ici la barre de progression -->
             </div>
         </footer>
     </div>
-
+    <!-- Il est préférable d'appeler le javascript en dernier une fois que tout le HTML a fini de charger pour éviter des disfonctionnements -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
     </body>
