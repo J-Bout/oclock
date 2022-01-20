@@ -1,0 +1,273 @@
+/**IMPORT FONTS**/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+/**INITIALIZE HTML FOR REM**/
+
+html{
+    font-size: 62.5%;
+}
+
+/**COLOR'S VARIABLES**/
+
+:root{
+    --default-color: #3f50b5;
+    --dark-color: #0b2154;
+    --accent-color: #FF881B;
+    --dark-color-rgb: 0, 40, 132;
+    --card-color: var(--default-color);
+    --light-color: #757ce8;
+    --ultralight-color : #ffffff;
+    --text-color:#454850;
+    --warning-color:#e85d04;
+    --alert-color:#d00000;
+}
+
+/*************/
+/**MIXINS**/
+/*************/
+
+
+/**FLEX + CENTER**/
+
+@mixin flexbox-center($direction,$justify)
+{
+    display:flex;
+    align-items: center;
+
+    @if $direction == column
+    {
+        flex-direction: column;
+    }
+    @else
+    {
+        flex-direction: row;
+    }
+
+    @if $justify == space-between
+    {
+        justify-content: space-between;
+    }
+    @else if $justify == space-around
+    {
+        justify-content: space-around;
+    }
+    @else
+    {
+        justify-content: center;
+    }
+
+}
+
+
+/*************/
+/**TEXT**/
+/*************/
+
+/**TITLES**/
+
+%base-title {
+    color: var(--dark-color);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    line-height: 1.7;
+}
+
+h1{
+    @extend %base-title;
+    font-size: 5rem;
+}
+
+h2{
+    @extend %base-title;
+    font-size: 4rem;
+}
+
+h3{
+    @extend %base-title;
+    font-size: 3rem;
+}
+
+/**DEFAULT**/
+
+%base-text {
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+body{
+    @extend %base-text; 
+}
+
+
+/*************/
+/**CONTAINERS**/
+/*************/
+
+#wrapper{
+    height: 100vh;
+    display: flex;
+    @include flexbox-center(column,center);
+}
+
+#container{
+    @include flexbox-center(column,center);
+    position: relative;
+    height: 53rem;
+}
+
+#btn-go{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--dark-color-rgb),0.6);
+    @include flexbox-center(column,center);
+    z-index: 10;
+
+    #resultats{
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--ultralight-color);
+        margin-bottom: 2rem;
+    }
+
+    #best-scores{
+        display:none;
+        text-align: center;
+        background: var(--dark-color);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 0.2rem solid var(--ultralight-color);
+
+        h2{
+            font-size: 2.8rem;
+            color: var(--ultralight-color);
+            margin-top: 0;
+        }
+    
+        ul{
+            list-style: none;
+            padding: 0;
+            color: var(--ultralight-color);
+
+            li{
+                &:first-child{
+                    font-size: 3.2rem;
+
+                    &:before{
+                        content: "👑";
+                        font-size: 2.8rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
+#game {
+    @include flexbox-center(row,space-between);
+    flex-wrap: wrap;
+    width: 75rem;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+
+
+.card{
+    width: 10rem;
+    height: 10rem;
+    cursor: pointer;
+    background: var(--card-color);
+
+    img{
+        display: none;
+        transition: all 0.1s ease;
+    }
+
+    &.clicked,
+    &.active{
+
+        pointer-events: none;
+
+        img{
+            display: block;
+        }
+    }
+}
+
+}
+
+footer{
+    width: 100%;
+    text-align: center;
+}
+
+
+/*************/
+/**BTN START**/
+/*************/
+
+#start,
+#restart{
+    color: var(--ultralight-color);
+    background-color: var(--accent-color);
+    padding: 0.5rem 1.2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    border: 0.2rem solid var(--ultralight-color);
+    cursor: pointer;
+}
+
+#restart{
+    display:none;
+}
+
+/*************/
+/**TIMER**/
+/*************/
+
+#timer {
+    width: 50%;
+    margin: auto;
+    margin-top: 2rem;
+    color: var(--dark-color);
+    font-weight: 700;
+    position: relative;
+
+    #progress-bar {
+        width: 90%;
+        margin: 0.1rem auto;
+        height: 0.4rem;
+        background-color: var(--ultralight-color);
+    
+    
+        div.bar {
+            height: 100%;
+            text-align: right;
+            padding: 0 0.1rem;
+            line-height: 0.4rem; /* same as #progressBar height if we want text middle aligned */
+            width: 0;
+            background-color: var(--dark-color);
+            box-sizing: border-box;
+            border-radius:0.3rem;
+          }
+    
+      }
+
+}
+
+
+
+
+  
+  
