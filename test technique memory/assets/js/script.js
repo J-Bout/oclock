@@ -84,6 +84,35 @@ $(document).ready(function () { // Permet d'exécuter le code une fois que le DO
 
     }
 
+        /** Function EndGame **/
+
+        function endGame(item) {
+
+            if (item === 'win') { // Ce qui se passe quand les conditions de victoires sont réunies
+                //launch = false;
+                clearTimeout(launchTimer); // On stoppe le timer
+                saveUserTimes();
+                $("#resultats").html("Vous avez gagné"); // On affiche le message dans la div #resultats
+                $("#btn-go").show(); // On affiche la div contenant les boutons
+                $("#restart").show(); // On affiche la bouton "rejouter"
+        
+            } else { //Ce qui se passe quand les conditions de défaites sont réunies
+                $("#resultats").html("Vous avez perdu"); // On affiche le message dans la div #resultats
+                $("#btn-go").show();
+                $("#restart").show(); 
+                //launch = true;
+            }
+        
+            /* On exécute la fonction permettant l'affichage des scores et on passe en 
+            paramètres l'utilisateur actuel (ici current user représente l'ensemble des joueurs. 
+            Seul cet utilisateur est enregistré en base.). 
+            Pour une future évolution du jeu, il sera possible de passer via une variable
+            le nom de chaque joueur afin d'afficher le "top score" individuel. */
+            showScores('current user'); 
+            $('#best-scores').show(); // on affiche la liste
+        
+        }
+
     /** Function Click Card **/
 
     /* On gère ici le comportement lors du click sur une carte */
@@ -173,40 +202,6 @@ $(document).ready(function () { // Permet d'exécuter le code une fois que le DO
     }
 
 
-
-        /** Function EndGame **/
-
-        function endGame(item) {
-
-            if (item === 'win') { // Ce qui se passe quand les conditions de victoires sont réunies
-                //launch = false;
-                clearTimeout(launchTimer); // On stoppe le timer
-                saveUserTimes();
-                $("#resultats").html("Vous avez gagné"); // On affiche le message dans la div #resultats
-                $("#btn-go").show(); // On affiche la div contenant les boutons
-                $("#restart").show(); // On affiche la bouton "rejouter"
-        
-            } else { //Ce qui se passe quand les conditions de défaites sont réunies
-                $("#resultats").html("Vous avez perdu"); // On affiche le message dans la div #resultats
-                $("#btn-go").show();
-                $("#restart").show(); 
-                //launch = true;
-            }
-        
-            /* On exécute la fonction permettant l'affichage des scores et on passe en 
-            paramètres l'utilisateur actuel (ici current user représente l'ensemble des joueurs. 
-            Seul cet utilisateur est enregistré en base.). 
-            Pour une future évolution du jeu, il sera possible de passer via une variable
-            le nom de chaque joueur afin d'afficher le "top score" individuel. */
-            showScores('current user'); 
-            $('#best-scores').show(); // on affiche la liste
-        
-            }
-        
-
-
-
-
     /*******************/
     /**  RANDOM CARDS **/
     /*******************/
@@ -242,17 +237,15 @@ $(document).ready(function () { // Permet d'exécuter le code une fois que le DO
 
     /*Launch game when btn "Commencer" is cliked*/
 
-
-
     $( "#start" ).click(function() {
-        randomFruits();
+        randomFruits(); //on place les fruits aléatoirement
         $( this ).slideUp();
         $("#btn-go").fadeOut();
         //launch = true;
-        progressBar(numberSecondes, numberSecondes, $('#progress-bar'));
+        progressBar(numberSecondes, numberSecondes, $('#progress-bar')); // on lance le timer et on passe en paramètre les secondes et le nom de barre de progression
     });
 
-    $( "#restart" ).click(function() {
+    $( "#restart" ).click(function() { // ici on réinitialise toutes les données
         counterPairsFound = 0;
         //launch = true;
         arrayCards = ["item-0","item-1","item-2","item-3","item-4","item-5","item-6","item-7","item-8","item-9","item-10","item-11","item-12","item-13","item-14","item-15","item-16","item-17","item-18","item-19","item-20","item-21","item-22","item-23","item-24","item-25","item-26","item-27"];
